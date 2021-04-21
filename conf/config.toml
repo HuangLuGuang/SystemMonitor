@@ -14,7 +14,7 @@ version = '0.2.0'                           # NOTE: 程序版本
 switch = true                               # NOTE: 监视器开关
 interval = 5                                # CHANGED: 监视器运行周期（秒）
     [monitor.innate]                        # 固有条目配置
-    id = 'Test'                             # CHANGED: 监视对象ID
+    id = 'device_avlmotor_01'               # CHANGED: 监视对象ID
         [monitor.innate.key]                # 固有条目中key名的配置
         timestamp = 'recordtime'            # CHANGED: 时间戳条目的key名
         id = 'deviceid'                     # CHANGED: ID条目的key名
@@ -38,22 +38,22 @@ interval = 5                                # CHANGED: 监视器运行周期（�
     lan = 'eth1'                            # CHANGED: LAN网卡的接口名
     [monitor.process]                       # 进程监视器配置
     names = ['python']                      # CHANGED: 需要监视的进程名列表
-    keywords = ['main', 'monitor']          # CHANGED: 需要监视的进程的命令行关键字列表
+    keywords = ['ziyan', 'chitu']          # CHANGED: 需要监视的进程的命令行关键字列表
 
 
 [outputer]                                  # 数据输出器配置: 决定数据输出格式和目标（该目标起中间缓存作用）
 switch = true                               # NOTE: 数据输出器开关
-output_format = 'console'                   # CHANGED: 'console'/'mqtt' -- 根据参数值格式化数据
-outputer_selector = 'console'               # CHANGED: 'console'/'mqtt' -- 选择数据输出器
+output_format = 'mqtt'                      # CHANGED: 'console'/'mqtt' -- 根据参数值格式化数据
+outputer_selector = 'mqtt'                  # CHANGED: 'console'/'mqtt' -- 选择数据输出器
     [outputer.console]                      # 数据输出器之一
     [outputer.mqtt]                         # 数据输出器之二
-    host = '127.0.0.1'                      # CHANGED: MQTT broker服务地址
+    host = '172.22.122.85'                  # CHANGED: MQTT broker服务地址
     port = 1883                             # NOTE: MQTT broker服务地址
     username = ''                           # CHANGED: 用户名，mqtt允许匿名则留空
     password = ''                           # CHANGED: 密码，mqtt允许匿名则留空
-    clientid = 'Test'                       # CHANGED: 客户端ID，为空则使用随机值
+    clientid = 'clientid'                   # CHANGED: 客户端ID，为空则使用随机值
     clean = false                           # NOTE: 是否清除连接会话，当clientid值为None、空字符串或随机值时必须为true
-    topics = ['system/monitor']             # FIXME: 发布/订阅的主题列表
+    topics = ['device_monitor/heartbeat']   # FIXME: 发布/订阅的主题列表
     qos = 1                                 # NOTE: 服务质量，可选值为：0, 1, 2
     keepalive = 60                          # NOTE: 心跳包发送时间间隔
 
@@ -65,7 +65,7 @@ decorator_selector = 'postgresql'           # CHANGED: 'text'/'postgresql' -- �
     mode = 'add'                            # CHANGED: 'add'/'write' -- 文件写入模式，追加或覆写
     [decorator.postgresql]                  # 数据装饰器一
     schema = 'public'                       # CHANGED: 数据存储的Schema名
-    table = 'example'                       # CHANGED: 数据存储的Table名
+    table = 'device_heartbeat'                       # CHANGED: 数据存储的Table名
 
 
 [log]                                       # 日志配置: 决定本程序日志格式和输出目标
