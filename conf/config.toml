@@ -16,7 +16,7 @@ interval = 120                                # CHANGED: 监视器运行周期�
     [monitor.innate]                        # 固有条目配置
     id = 'Test-machine'               # CHANGED: 监视对象ID
         [monitor.innate.key]                # 固有条目中key名的配置
-        timestamp = 'recordtime'            # CHANGED: 时间戳条目的key名
+        timestamp = 'timestamp'            # CHANGED: 时间戳条目的key名
         id = ''                     # CHANGED: ID条目的key名
     [monitor.custom]                        # 自定义信息配置
     name = 'Test-machine'                   # CHANGED: 监视对象名
